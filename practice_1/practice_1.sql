@@ -183,7 +183,8 @@ UPDATE practice_1.books
 SET 
   page_count = 28 
 WHERE 
-  id = 12;
+  id = 12
+RETURNING *;
 
 --Excercise 9
 DELETE
