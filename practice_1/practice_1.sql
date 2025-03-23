@@ -200,4 +200,5 @@ WHERE
       page_count DESC 
     limit 
       1
-  );
+  )
+RETURNING *;
