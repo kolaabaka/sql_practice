@@ -181,7 +181,7 @@ FROM
 --Excercise 8
 UPDATE practice_1.books
 SET 
-  page_count = 28 
+  page_count = page_count + 28 
 WHERE 
   id = 12
 RETURNING *;
