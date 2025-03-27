@@ -229,3 +229,32 @@ select t.passenger_name,
 from practice_2.ticket t
 group by t.passenger_name
 order by 2 desc;
+
+--Excercise 8
+select t1.*,
+       first_value(t1.cnt) over () - t1.cnt
+from (
+         select t.passenger_no,
+                t.passenger_name,
+                count(*) cnt
+         from practice_2.ticket t
+         group by t.passenger_no, t.passenger_name
+         order by 3 desc) t1;
+         
+--Excercise 9
+--Mine
+select flight_id, sum(cost)
+from practice_2.ticket t 
+group by flight_id 
+order by flight_id asc;
+
+--Solved example
+select t1.*,
+       COALESCE(lead(t1.sum_cost) OVER(order by t1.sum_cost), t1.sum_cost) - t1.sum_cost
+from (
+         select t.flight_id,
+                sum(t.cost) sum_cost
+         from practice_2.ticket t
+         group by t.flight_id
+         order by 2 desc) t1
+order by flight_id;
